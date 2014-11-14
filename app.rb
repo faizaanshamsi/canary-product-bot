@@ -1,7 +1,5 @@
 require 'sinatra'
-require 'sinatra/reloader'
 require 'capybara/poltergeist'
-require 'pry'
 require 'csv'
 
 configure do
@@ -10,7 +8,6 @@ end
 
 Dir[File.join(File.dirname(__FILE__), 'app', '**', '*.rb')].each do |file|
   require file
-  also_reload file
 end
 
 get '/' do
@@ -82,10 +79,8 @@ post '/create' do
   puts "Filling in seller name with #{data[:owner_name]}"
   s.fill_in 'pods_meta_seller_name', with: data[:owner_name]
 
-  if data[:seller]
-    puts "Selecting #{data[:seller]} from available sellers"
-    s.select data[:seller], from: 'pods_meta_seller'
-  end
+  puts "Selecting #{data[:seller]} from available sellers"
+  s.select data[:seller], from: 'pods_meta_seller'
 
   if data[:featured]
     puts "Checking off Featured"
