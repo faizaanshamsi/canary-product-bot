@@ -5,6 +5,9 @@ require 'csv'
 configure do
   set :views, 'app/views'
 end
+configure :production do
+  require 'newrelic_rpm'
+end
 
 Dir[File.join(File.dirname(__FILE__), 'app', '**', '*.rb')].each do |file|
   require file
