@@ -82,8 +82,10 @@ post '/create' do
   puts "Filling in seller name with #{data[:owner_name]}"
   s.fill_in 'pods_meta_seller_name', with: data[:owner_name]
 
-  puts "Selecting #{data[:seller]} from available sellers"
-  s.select data[:seller], from: 'pods_meta_seller'
+  if data[:seller]
+    puts "Selecting #{data[:seller]} from available sellers"
+    s.select data[:seller], from: 'pods_meta_seller'
+  end
 
   if data[:featured]
     puts "Checking off Featured"
