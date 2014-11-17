@@ -50,7 +50,6 @@ class Bot
 
     puts 'Visiting new product page'
     s.visit '/wp-admin/post-new.php?post_type=product'
-    
     puts "Filling in title with #{data[:title]}"
     s.fill_in 'post_title', with: data[:title]
 

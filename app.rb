@@ -3,6 +3,7 @@ require 'capybara/poltergeist'
 require 'csv'
 require 'json'
 require 'rest_client'
+require 'pry'
 
 configure do
   set :views, 'app/views'
@@ -25,5 +26,6 @@ post '/create' do
   filename = params['my_file'][:tempfile]
   Bot.new(username, password, filename).populate_wordpress_and_pipedeals
   File.delete(filename.path)
+  `pkill phantom`
   redirect '/'
 end
