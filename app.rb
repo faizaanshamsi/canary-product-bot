@@ -26,6 +26,5 @@ post '/create' do
   filename = params['my_file'][:tempfile]
   Bot.new(username, password, filename).populate_wordpress_and_pipedeals
   File.delete(filename.path)
-  `pkill phantom`
   redirect '/'
 end

@@ -101,6 +101,7 @@ class Bot
     create_deal(data[:title], data[:price])
     # Save Draft
     s.find('#save-post').click
+    s.driver.quit
   end
 
   def create_deal(title, price)
